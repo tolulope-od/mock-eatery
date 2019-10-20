@@ -1,0 +1,43 @@
+{
+  "name": "mock-eatery",
+  "version": "1.0.0",
+  "description": "A mock recipe lookup api",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=dev DEBUG=dev nodemon --exec babel-node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tolulope-od/mock-eatery.git"
+  },
+  "keywords": [
+    "api",
+    "eatery",
+    "recipes"
+  ],
+  "author": "Tolulope Odueke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tolulope-od/mock-eatery/issues"
+  },
+  "homepage": "https://github.com/tolulope-od/mock-eatery#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.4",
+    "prettier-eslint": "^9.0.0",
+    "prettier-eslint-cli": "^5.0.0"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  }
+}
