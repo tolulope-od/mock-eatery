@@ -30,6 +30,9 @@ const userSchema = new Schema({
   verificationToken: {
     type: String
   },
+  avatar: {
+    type: String
+  },
   createdOn: {
     type: Date,
     default: Date.now

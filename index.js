@@ -2,12 +2,17 @@ import express from 'express';
 import logger from 'morgan';
 import Debug from 'debug';
 import dotenv from 'dotenv';
+import passport from 'passport';
 
+import passportConfig from './config/passportConfig';
+import sessionConfig, { checkRateLimit } from './config/redisConfig';
 import connectToDB from './db/config';
 import ServerResponseModule from './modules/ServerResponse';
+import routes from './routes';
 
 dotenv.config();
 
+const API_V1 = '/api/v1';
 const PORT = process.env.PORT || 5000;
 const debug = Debug('dev');
 const {
@@ -22,10 +27,19 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(sessionConfig());
+app.use(checkRateLimit);
+app.use(API_V1, routes);
+passportConfig(passport);
 
-app.get('/', (req, res) =>
-  res.status(200).json({ status: 'success', message: 'Welcome to Mock-Eats' })
-);
+app.get('/', (req, res) => {
+  const expireTime = req.session.cookie.maxAge / 1000;
+  res.status(200).json({
+    status: 'success',
+    message: 'Welcome to Mock-Eats'
+  });
+});
 
 app.use(resourceNotFound);
 
