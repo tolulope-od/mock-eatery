@@ -6,6 +6,9 @@ const categorySchema = new Schema({
     required: true,
     unique: true
   },
+  description: {
+    type: String
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
@@ -22,6 +25,10 @@ const categorySchema = new Schema({
     type: Date,
     default: Date.now
   }
+});
+
+categorySchema.pre('remove', function(next) {
+  this.model('Recipe').deleteMany({ categorId: this._id }, next);
 });
 
 const Category = mongoose.model('categories', categorySchema);
