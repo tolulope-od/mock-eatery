@@ -10,7 +10,9 @@ class SearchController {
       const key = req.url.toString();
       redisClient.get(key, async (err, result) => {
         if (result) {
-          ServerResponseModule.success(res, 200, 'results', JSON.parse(result));
+          const cachedResult = JSON.parse(result);
+          cachedResult['cached'] = true;
+          ServerResponseModule.success(res, 200, 'results', cachedResult);
         } else {
           // prettier-ignore
           const {
@@ -35,16 +37,16 @@ class SearchController {
 
           if (filterBy === 'category') {
             redisClient.setex(key, 300, JSON.stringify({ categories }));
-            return ServerResponseModule.success(res, 200, 'results', { categories });
+            return ServerResponseModule.success(res, 200, 'results', { categories, cached: false });
           }
 
           if (filterBy === 'recipe') {
             redisClient.setex(key, 300, JSON.stringify({ recipes }));
-            return ServerResponseModule.success(res, 200, 'results', { recipes });
+            return ServerResponseModule.success(res, 200, 'results', { recipes, cached: false });
           }
 
           redisClient.setex(key, 300, JSON.stringify({ categories, recipes }));
-          return ServerResponseModule.success(res, 200, 'results', { categories, recipes });
+          return ServerResponseModule.success(res, 200, 'results', { categories, recipes, cached: false });
         }
       });
     } catch (err) {
