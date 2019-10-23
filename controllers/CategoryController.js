@@ -31,7 +31,7 @@ class CategoryController {
     try {
       const { categoryName, description } = req.body;
       const validId = mongoose.Types.ObjectId.isValid(req.params.id);
-      const existingCategory = await Category.findOne({ _id: id });
+      const existingCategory = await Category.findOne({ _id: req.params.id });
       if (!validId || !existingCategory) {
         return error(res, 404, { category: 'That category does not exist' });
       }
@@ -42,11 +42,7 @@ class CategoryController {
       categoryFields.description = description;
       categoryFields.updatedOn = Date.now();
 
-      const category = await Category.findOneAndUpdate(
-        { _id: req.params.id },
-        { $set: categoryFields },
-        { new: true }
-      );
+      const category = await Category.findOneAndUpdate({ _id: req.params.id }, { $set: categoryFields }, { new: true });
 
       return success(res, 200, 'category', category);
     } catch (err) {
