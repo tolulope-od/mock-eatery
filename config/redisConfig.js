@@ -12,7 +12,7 @@ dotenv.config();
 const debug = Debug('dev');
 
 const redisStore = connectRedis(session);
-const redisClient = redis.createClient();
+export const redisClient = redis.createClient();
 
 redisClient.on('error', (err) => debug(`Redis error: ${err}`));
 redisClient.on('ready', (err) => debug('Redis is ready'));

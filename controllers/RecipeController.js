@@ -85,7 +85,10 @@ class RecipeController {
         recipeIngredients.forEach((ingredient) => updatedRecipe.ingredients.push(ingredient));
       }
 
+      const newSlug = isEmpty(recipeName) ? updatedRecipe.recipeName : new Slug(recipeName).generateUniqueSlug();
+
       updatedRecipe.recipeName = recipeName;
+      updatedRecipe.slug = newSlug;
       updatedRecipe.updatedBy = req.user.id;
       updatedRecipe.updatedOn = Date.now();
 

@@ -31,6 +31,8 @@ categorySchema.pre('remove', function(next) {
   this.model('Recipe').deleteMany({ categorId: this._id }, next);
 });
 
+categorySchema.index({ categoryName: 'text', description: 'text' });
+
 const Category = mongoose.model('categories', categorySchema);
 
 export default Category;
