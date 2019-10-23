@@ -6,8 +6,8 @@ export default {
       .min(3)
       .max(30)
       .required()
-      .error(errors => {
-        errors.forEach(err => {
+      .error((errors) => {
+        errors.forEach((err) => {
           switch (err.type) {
             case 'any.empty':
               err.message = 'First name is required';
@@ -31,8 +31,8 @@ export default {
       .min(3)
       .max(30)
       .required()
-      .error(errors => {
-        errors.forEach(err => {
+      .error((errors) => {
+        errors.forEach((err) => {
           switch (err.type) {
             case 'any.empty':
               err.message = 'Last name is required';
@@ -56,8 +56,8 @@ export default {
       .min(7)
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/)
       .required()
-      .error(errors => {
-        errors.forEach(err => {
+      .error((errors) => {
+        errors.forEach((err) => {
           switch (err.type) {
             case 'any.empty':
               err.message = 'Password is required';
@@ -69,8 +69,7 @@ export default {
               err.message = `Password must not be less than ${err.context.limit} characters and must contain at least one number`;
               break;
             case 'string.regex.base':
-              err.message =
-                'Password at least one uppercase, one lowercase and one number e.g Coolpassword1000';
+              err.message = 'Password at least one uppercase, one lowercase and one number e.g Coolpassword1000';
               break;
             default:
               break;
@@ -81,8 +80,8 @@ export default {
     email: Joi.string()
       .email({ minDomainSegments: 2 })
       .required()
-      .error(errors => {
-        errors.forEach(err => {
+      .error((errors) => {
+        errors.forEach((err) => {
           switch (err.type) {
             case 'any.empty':
               err.message = 'Email is required';
@@ -91,8 +90,7 @@ export default {
               err.message = 'Email is required';
               break;
             case 'string.email':
-              err.message =
-                'Please input a valid email e.g somename@somedomain.com';
+              err.message = 'Please input a valid email e.g somename@somedomain.com';
               break;
             default:
               break;
@@ -104,8 +102,8 @@ export default {
   loginSchema: {
     email: Joi.string()
       .required()
-      .error(errors => {
-        errors.forEach(err => {
+      .error((errors) => {
+        errors.forEach((err) => {
           switch (err.type) {
             case 'any.empty':
               err.message = 'email is required';
@@ -121,8 +119,8 @@ export default {
       }),
     password: Joi.string()
       .required()
-      .error(errors => {
-        errors.forEach(err => {
+      .error((errors) => {
+        errors.forEach((err) => {
           switch (err.type) {
             case 'any.empty':
               err.message = 'Password is required';

@@ -30,6 +30,7 @@
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-mocha": "^6.2.0",
     "nodemon": "^1.19.4",
     "prettier-eslint": "^9.0.0",
     "prettier-eslint-cli": "^5.0.0"

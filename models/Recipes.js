@@ -26,6 +26,11 @@ const recipeSchema = new Schema({
       }
     }
   ],
+  slug: {
+    type: String,
+    required: true,
+    unique: true
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
