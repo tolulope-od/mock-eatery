@@ -15,11 +15,7 @@ dotenv.config();
 const API_V1 = '/api/v1';
 const PORT = process.env.PORT || 5000;
 const debug = Debug('dev');
-const {
-  resourceNotFound,
-  serverError,
-  serverErrorWithStackTrace
-} = ServerResponseModule;
+const { resourceNotFound, serverError, serverErrorWithStackTrace } = ServerResponseModule;
 const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
@@ -34,7 +30,6 @@ app.use(API_V1, routes);
 passportConfig(passport);
 
 app.get('/', (req, res) => {
-  const expireTime = req.session.cookie.maxAge / 1000;
   res.status(200).json({
     status: 'success',
     message: 'Welcome to Mock-Eats'
