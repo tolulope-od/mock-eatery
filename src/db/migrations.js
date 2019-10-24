@@ -112,6 +112,8 @@ const createUsersWithCategoriesAndRecipes = async () => {
 
   await Recipe.insertMany(bulkRecipes, (err, docs) => {
     if (err) log(err);
+    mongoose.connection.close();
+    log('done seeding');
     process.exit(0);
   });
 };
