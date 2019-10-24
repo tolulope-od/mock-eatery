@@ -6,7 +6,8 @@
   "jest": {
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/",
+      "/__mocks__/"
     ]
   },
   "scripts": {
@@ -17,6 +18,7 @@
     "clean": "rm -rf build && mkdir build",
     "dev": "NODE_ENV=dev DEBUG=dev nodemon --exec babel-node .",
     "seed:db": "babel-node ./src/db/migrations.js",
+    "pretest": "NODE_ENV=test npm run seed:db",
     "test": "NODE_ENV=test DEBUG=test jest --detectOpenHandles"
   },
   "repository": {
