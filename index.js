@@ -1,14 +1,15 @@
+import '@babel/polyfill';
 import express from 'express';
 import logger from 'morgan';
 import Debug from 'debug';
 import dotenv from 'dotenv';
 import passport from 'passport';
 
-import passportConfig from './config/passportConfig';
-import sessionConfig, { checkRateLimit } from './config/redisConfig';
-import connectToDB from './db/config';
-import ServerResponseModule from './modules/ServerResponse';
-import routes from './routes';
+import passportConfig from './src/config/passportConfig';
+import sessionConfig, { checkRateLimit } from './src/config/redisConfig';
+import connectToDB from './src/db/config';
+import ServerResponseModule from './src/modules/ServerResponse';
+import routes from './src/routes';
 
 dotenv.config();
 
