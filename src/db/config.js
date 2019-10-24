@@ -3,7 +3,10 @@ import mongoose from 'mongoose';
 import Debug from 'debug';
 
 dotenv.config();
-const debug = Debug('dev');
+
+const debugEnv = process.env.NODE_ENV === 'dev' ? 'dev' : 'test';
+
+const debug = Debug(debugEnv);
 
 const env = process.env.NODE_ENV || 'dev';
 

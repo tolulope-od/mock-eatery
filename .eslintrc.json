@@ -4,7 +4,7 @@
     "browser": true,
     "node": true,
     "es6": true,
-    "mocha": true
+    "jest": true
   },
   "extends": "airbnb-base",
   "globals": {
@@ -15,7 +15,6 @@
     "sourceType": "module",
     "ecmaVersion": 9
   },
-  "plugins": ["mocha"],
   "rules": {
     "one-var": 0,
     "one-var-declaration-per-line": 0,
@@ -27,7 +26,6 @@
     "import/no-unresolved": [2, { "commonjs": true }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "max-len": ["error", { "code": 160 }],
-    "mocha/no-exclusive-tests": ["error"],
     "no-unused-vars": ["error", { "varsIgnorePattern": "should|expect" }],
     "linebreak-style": 0
   }
