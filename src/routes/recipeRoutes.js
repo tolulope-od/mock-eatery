@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import RecipeController from '../controllers/RecipeController';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
+import CartController from '../controllers/CartController';
 
 const router = Router();
 
@@ -21,5 +22,7 @@ router.delete(
   AuthMiddleware.allowOnly(['admin', 'superAdmin']),
   RecipeController.deleteIngredient
 );
+
+router.post('/:slug/cart', AuthMiddleware.authenticateJWT, AuthMiddleware.allowOnly(['regular']), CartController.addRecipeToCart);
 
 export default router;
