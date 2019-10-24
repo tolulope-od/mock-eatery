@@ -51,8 +51,12 @@ app.use(serverError);
   }
 })();
 
-app.listen(PORT, () => {
-  debug(`Server running on port:${PORT}`);
-});
+const isTest = process.env.NODE_ENV === 'test';
+
+if (!isTest) {
+  app.listen(PORT, () => {
+    debug(`Server running on port:${PORT}`);
+  });
+}
 
 export default app;
