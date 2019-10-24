@@ -54,3 +54,5 @@ app.use(serverError);
 app.listen(PORT, () => {
   debug(`Server running on port:${PORT}`);
 });
+
+export default app;
